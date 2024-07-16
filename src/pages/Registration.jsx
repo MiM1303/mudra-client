@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import bcrypt from "bcryptjs";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from "react-router-dom";
 
 const Registration = () => {
     var salt = bcrypt.genSaltSync(10);
@@ -104,7 +105,7 @@ const Registration = () => {
                                     {errors.user_role && <span className="mt-2 text-[#FF5A3D]">This field is required</span>}
                         </div>
                         <p>
-                            Already have an account? <span className="text-[#A90C0F] font-bold underline lg:text-lg">Log In</span> here!
+                            Already have an account? <Link to="/login" className="text-[#A90C0F] font-bold underline lg:text-lg">Log In</Link> here!
                         </p>
                         <div className="form-control mt-6">
                             <button className="btn text-black text-base lg:text-lg font-bold bg-[#F6BE4F]">Register</button>

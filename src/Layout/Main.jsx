@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 
 const Main = () => {
     return (
-        <div>
+        <div className="varela">
             <Outlet></Outlet>
         </div>
     );

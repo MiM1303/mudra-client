@@ -9,12 +9,8 @@ import Registration from "../pages/Registration";
 export const router = createBrowserRouter([
     {
       path: "/",
-      element: <Main></Main>,
+      element: <Login></Login>,
       children: [
-        {
-            path: "/",
-            element: <Main></Main>
-        },
         {
             path: "/login",
             element: <Login></Login>
