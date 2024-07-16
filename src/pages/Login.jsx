@@ -4,11 +4,13 @@ import bcrypt from "bcryptjs";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 const Login = () => {
     const {register, handleSubmit, formState: { errors }} = useForm();
     const navigate = useNavigate();
     const location = useLocation();
+    const axiosPublic = useAxiosPublic();
     var salt = bcrypt.genSaltSync(10);
     const onSubmit = (data) => {
         console.log(data);
@@ -22,11 +24,19 @@ const Login = () => {
             console.log(data);
             if(data.message === "User not found"){
                 toast.error("Account Does Not Exist!");
+                return;
             }
             const isMatch = bcrypt.compareSync("12345", hash);
             // console.log(data.pin, hash, isMatch);
             if(isMatch){
                 console.log("PIN matches");
+                // set jwt token in local storage
+                axiosPublic.post('jwt', data)
+                .then(res=>{
+                    if(res.data.token){
+                        localStorage.setItem('access-token', res.data.token);
+                    }
+                })
                 navigate('/dashboard', { state: { from: location } })
             }
             else{
