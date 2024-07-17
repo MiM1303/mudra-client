@@ -13,7 +13,7 @@ const useUserData = () => {
               setUserData(data);
               console.log(userData);
           });
-      }, []);
+      }, [user_email]);
       return [userData];
 };
 

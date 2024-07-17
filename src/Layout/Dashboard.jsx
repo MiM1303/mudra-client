@@ -1,18 +1,12 @@
 import { useEffect, useState } from "react";
 import logo from "../assets/mudra_logo.png";
 import "../Layout/DashboardStyles.css";
-import { FaRegUser } from "react-icons/fa";
-import { GrTransaction } from "react-icons/gr";
-// import { HiOutlineArrowLongDown } from "react-icons/hi2";
-// import { HiOutlineArrowLongUp } from "react-icons/hi2";
-import { GiPayMoney } from "react-icons/gi";
-import { GiReceiveMoney } from "react-icons/gi";
-import { GiTakeMyMoney } from "react-icons/gi";
 import useUserData from "../hooks/useUserData";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
     const [userData] = useUserData();
+    console.log("in dashboard");
     return (
         <div>
             {/* MOBILE VERSION DRAWER AND CONTENT */}
@@ -43,10 +37,10 @@ const Dashboard = () => {
                     <ul className="menu bg-[#F6BE4F] min-h-full w-fit p-4 pr-10">
                     {/* Sidebar content here */}
                     <div className="mb-12">
-                        <img src={logo} alt="" className="h-[70px] w-[70px]"/>
+                        <Link to="dashboard"><img src={logo} alt="" className="h-[70px] w-[70px]"/></Link>
                         <li className="text-[#A90C0F] ml-3 font-extrabold text-xl">Mudra</li>
                     </div>
-                    <li className="mobile-nav-options"> <NavLink to="/dashboard/my-account">My Account</NavLink> </li>
+                    <li className="mobile-nav-options"> <Link to="dashboard/my-account">My Account</Link> </li>
                     <li className="mobile-nav-options"><a>Transactions </a></li>
                     <li className="mobile-nav-options"><a>Send Money </a></li>
                     <li className="mobile-nav-options"><a>Cash Out </a></li>
@@ -60,15 +54,17 @@ const Dashboard = () => {
             {/* DESKTOP VERSION */}
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content flex flex-col p-20">
+                <div className="drawer-content flex flex-col p-4 lg:p-20">
                     {/* Page content here */}
                     {/* <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden"> */}
-                    <div className="border-2 border-[#A90C0F] rounded-xl w-fit p-5">
-                        {/* user info */}
+                    <div className="flex-1 lg:p-8">
+                        <Outlet></Outlet>
+                    </div>
+                    {/* <div className="border-2 border-[#A90C0F] rounded-xl w-fit p-5">
                         <p className="text-xl font-bold mb-2">{userData.name}</p>
                         <p className="text-xl"><span className=" font-bold">Balance: </span>{userData.balance}</p>
-                    </div>
-                    <div className="grid lg:grid-cols-3 mt-10 gap-20  border-2 border-[#A90C0F] rounded-xl p-10 w-fit">
+                    </div> */}
+                    {/* <div className="grid lg:grid-cols-3 mt-10 gap-20  border-2 border-[#A90C0F] rounded-xl p-10 w-fit">
                         <NavLink to="/dashboard/my-account" className="desktop-dashboard-content-options">
                             <div className=" desktop-dashboard-icons"><FaRegUser /></div>
                             <p>My Account</p>
@@ -89,17 +85,18 @@ const Dashboard = () => {
                             <div className=" desktop-dashboard-icons"><GiReceiveMoney /></div>
                             <p>Cash In</p>
                         </div>
-                    </div>
+                    </div> */}
+
                     {/* </label> */}
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu bg-[#F6BE4F] text-base-content min-h-full w-80 p-4">
                     <div className="mb-12">
-                        <img src={logo} alt="" className="h-20 w-20"/>
+                        <Link to=""><img src={logo} alt="" className="h-20 w-20"/></Link>
                         <li className="text-[#A90C0F] ml-3 font-extrabold text-2xl">Mudra</li>
                     </div>
-                    <li className="desktop-nav-options"> <NavLink to="/dashboard/my-account">My Account</NavLink> </li>
+                    <li className="desktop-nav-options"> <NavLink to="my-account">My Account</NavLink> </li>
                     <li className="desktop-nav-options"><a>Transactions</a></li>
                     <li className="desktop-nav-options"><a>Send Money</a></li>
                     <li className="desktop-nav-options"><a>Cash Out</a></li>

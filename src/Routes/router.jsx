@@ -5,6 +5,8 @@ import {
 import Dashboard from "../Layout/Dashboard";
 import Login from "../pages/Login";
 import Registration from "../pages/Registration";
+import MyAccount from "../pages/Dashboard/User/MyAccount";
+import DashContent from "../pages/DashContent";
 
 export const router = createBrowserRouter([
     {
@@ -21,17 +23,21 @@ export const router = createBrowserRouter([
         },
       ]
     },
+    // {
+    //   path: "/my-account",
+    //   element: <MyAccount></MyAccount>
+    // },
     {
       path: "/dashboard",
       element: <Dashboard></Dashboard>,
       children: [
         {
-          path: "my-account",
-            element: <Login></Login>
+          path: "",
+            element: <DashContent></DashContent>
         },
         {
-            path: "register",
-            element: <Registration></Registration>
+          path: "my-account",
+            element: <MyAccount></MyAccount>
         },
       ]
     }
