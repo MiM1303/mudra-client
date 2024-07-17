@@ -1,0 +1,30 @@
+.desktop-nav-options{
+    font-weight: 700;
+    font-size: large;
+    padding-bottom: 20px;
+}
+
+.mobile-nav-options{
+    font-weight: 500;
+    font-size: 15px;
+    padding-bottom: 10px;
+}
+
+.desktop-dashboard-content-options{
+    display:flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    font-size: 20px;
+}
+
+/* p-4 border rounded-full border-[#A90C0F] w-fit text-2xl */
+
+.desktop-dashboard-icons{
+    padding: 20px;
+    border-width: medium;
+    border-radius: 100%;
+    border-color: #F6BE4F;
+    width: fit-content;
+    font-size: larger;
+}

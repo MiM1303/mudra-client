@@ -22,6 +22,7 @@ const Login = () => {
         .then(res=>res.json())
         .then(data=>{
             console.log(data);
+            const user_data = data;
             if(data.message === "User not found"){
                 toast.error("Account Does Not Exist!");
                 return;
@@ -34,7 +35,11 @@ const Login = () => {
                 axiosPublic.post('jwt', data)
                 .then(res=>{
                     if(res.data.token){
+                        
                         localStorage.setItem('access-token', res.data.token);
+                        // console.log("current user data",user_data);
+                        localStorage.setItem('user-email', user_data.email);
+
                     }
                 })
                 navigate('/dashboard', { state: { from: location } })
